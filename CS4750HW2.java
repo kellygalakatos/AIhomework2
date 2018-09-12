@@ -54,7 +54,7 @@ public class CS4750HW2 {
         Stack<Node> solutionStack = new Stack<>();
         
         fringe.push(rootNode);
-        while (!fringe.empty() && expandedNodes <= 1000000000){
+        while (!fringe.empty() && expandedNodes <= 1000000){
             tempNode = fringe.pop();
             if (tempNode.equals(solutionNode)){
                 //case for solution
