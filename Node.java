@@ -5,6 +5,8 @@
  */
 package cs4750hw2;
 
+import java.util.Arrays;
+
 /**
  *
  * @author Joey Crowe
@@ -132,15 +134,24 @@ public class Node {
         return array;
     }
     
-    public boolean isEqual(Node secondNode){
+    @Override
+    public boolean equals(Object obj){
+        Node temp = (Node)obj;
         for (int i =0; i <= 3 ; i++){
             for (int j=0; j <= 3; j++){
-                if (secondNode.board[i][j] != this.board[i][j]){
+                if (temp.board[i][j] != this.board[i][j]){
                     return false;
                 }
             }
         }
         return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 3;
+        hash = 47 * hash + Arrays.deepHashCode(this.board);
+        return hash;
     }
         
 }
