@@ -50,7 +50,7 @@ public class Node {
         
         for (int i=0; i <= 3; i++){//copy board
             for (int j = 0; j <= 3; j++){
-                this.board[i][j] = board[i][j];
+                this.board[i][j] = rental.board[i][j];
             }
         }
         
