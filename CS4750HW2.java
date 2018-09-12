@@ -24,12 +24,18 @@ public class CS4750HW2 {
         //start of timer
         final long startTime = System.currentTimeMillis();
         
+//        int[][] startingBoard = {
+//            {1,2,7,3},
+//            {5,6,11,4},
+//            {9,10,15,8},
+//            {13,14,12,0}
+//        };
         int[][] startingBoard = {
-            {1,2,7,3},
-            {5,6,11,4},
-            {9,10,15,8},
-            {13,14,12,0}
-        };
+            {5,1,7,3},
+            {9,2,11,4},
+            {13,6,15,8},
+            {0,10,14,12}
+        };        
         int[][] solutionBoard = {
             {1,2,3,4},
             {5,6,7,8},
@@ -48,7 +54,7 @@ public class CS4750HW2 {
         Stack<Node> solutionStack = new Stack<>();
         
         fringe.push(rootNode);
-        while (!fringe.empty() && expandedNodes <= 1000000){
+        while (!fringe.empty() && expandedNodes <= 1000000000){
             tempNode = fringe.pop();
             if (tempNode.equals(solutionNode)){
                 //case for solution
@@ -61,9 +67,9 @@ public class CS4750HW2 {
                 closed.add(tempNode);
                 tempArray = tempNode.expand();
                 expandedNodes++;
-                if (expandedNodes % 100 == 0){
-                    System.out.println(expandedNodes);
-                }
+//                if (expandedNodes % 100 == 0){
+//                    System.out.println(expandedNodes);
+//                }
                 if (expandedNodes <= 5){
                     System.out.println(Arrays.deepToString(tempNode.board));
                 }
