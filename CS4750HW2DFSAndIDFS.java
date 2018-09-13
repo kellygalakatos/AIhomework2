@@ -23,7 +23,7 @@ public class CS4750HW2DFSAndIDFS {
      */
     public static void main(String[] args) {
         
-        //START OF DFS
+        //START OF DFS 
         
         //start of timer
 //        final long startTime = System.currentTimeMillis();
