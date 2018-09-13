@@ -3,16 +3,16 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package cs4750hw2;
+package cs4750homeworknumber2;
 
 import java.util.Arrays;
 
 /**
  *
- * @author Joey Crowe
+ * @author crowe_000
  */
 public class Node {
-    public int[][] board;  //game board
+        public int[][] board;  //game board
     
     public int numberMoved;//used to break ties and for move sequence
     
@@ -158,5 +158,4 @@ public class Node {
         hash = 47 * hash + Arrays.deepHashCode(this.board);
         return hash;
     }
-        
 }
