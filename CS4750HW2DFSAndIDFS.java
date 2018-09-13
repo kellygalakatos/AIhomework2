@@ -11,19 +11,24 @@ import java.util.Stack;
 
 /**
  *
- * @author crowe_000
+ * @authors crowe_000, Daniel Jakle
  */
+
+//DFS is commented out, IDS is not
+//To test DFS, uncomment it and comment out the IDS portion
 public class CS4750HW2DFSAndIDFS {
 
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
-        // TODO code application logic here
+        
+        //START OF DFS
+        
         //start of timer
 //        final long startTime = System.currentTimeMillis();
 //        
+        //test cases
 //        int[][] startingBoard = {
 //            {1,2,7,3},
 //            {5,6,11,4},
@@ -97,9 +102,16 @@ public class CS4750HW2DFSAndIDFS {
 //        final long endTime = System.currentTimeMillis();
 //        System.out.println("Total execution time: " + (endTime - startTime) );
 
-
+    //END OF DFS
+        
+        
+    //START OF IDS
+        
+        
     final long startTime = System.currentTimeMillis();
     int maxDepth = 0;
+        
+        //test cases        
 //    int[][] startingBoard = {
 //            {1,2,7,3},
 //            {5,6,11,4},
@@ -129,9 +141,7 @@ int[][] startingBoard = {
     Stack<Node> solutionStack = new Stack<>();
     boolean solutionFound=false;
     
-    
-    //assuming I implemented the Node class correctly and it increments the depth with each iteration, this should limit the
-    //depth per turn until a solution is reached
+    //similar to the DFS, but limits depth per turn
     while (expandedNodes <= 1000000 && !solutionFound){
         fringe.push(rootNode);
         while(!fringe.empty() && expandedNodes <= 1000000){
@@ -148,7 +158,7 @@ int[][] startingBoard = {
                         break;
                     }
 
-
+                //this should limit the depth per turn until a solution is reached
                 if(tempNode.depth <= maxDepth){
                     tempArray=tempNode.expand();
                     expandedNodes++;
@@ -161,8 +171,7 @@ int[][] startingBoard = {
                         }
                     }
                 }
-                //increment the depth limiter only after all nodes at the current depth have been searched (if all goes according to plan...)
-
+                //increment the depth limiter only after all nodes at the current depth have been searched
         }
         maxDepth++;
     }
@@ -182,5 +191,7 @@ int[][] startingBoard = {
     final long endTime = System.currentTimeMillis();
     System.out.println("Total execution time: " + (endTime - startTime) );
     }
+    
+    //END OF IDS
     
 }
