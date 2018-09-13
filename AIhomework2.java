@@ -53,7 +53,7 @@ public class AIhomework2 {
         
       
         aStarOpened.add(rootNode); 
-        while (!aStarOpened.isEmpty() && expandedNodes <= 1000000){  
+        while (!aStarOpened.isEmpty() && expandedNodes <= 1000000 && solutionStack.isEmpty()){  
            
             tempNode = getMinHeuristic(aStarOpened);
             aStarOpened.remove(getMinHeuristic(aStarOpened));
