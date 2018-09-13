@@ -62,7 +62,7 @@ public class Node {
         //move number and set zeroRow, zeroColumn, and number moved
         switch (direction) {
             case 1:
-                //move right
+                //move up
                 this.numberMoved = this.board[swapRow - 1][swapColumn];
                 this.zeroRow = swapRow - 1;
                 this.zeroColumn = swapColumn;
