@@ -45,42 +45,40 @@ public class CS4750HomeworkNumber2 {
         int expandedNodes = 0;
         int solutionLength = 0;
         
-        Node solutionNode = new Node(solutionBoard);
-        Node rootNode = new Node(startingBoard);
-        Node tempNode;
+        Node solutionNode = new Node(solutionBoard);  //goal state
+        Node rootNode = new Node(startingBoard);      //starting state
+        Node tempNode;  //current state
         
         Node[] tempArray;
-        HashSet<Node> closed = new HashSet<>();
+        HashSet<Node> closed = new HashSet<>();   //nodes that have already been visited
  
-        Stack<Node> solutionStack = new Stack<>();
-        ArrayList<Node> aStarOpened = new ArrayList<Node>();  
+        Stack<Node> solutionStack = new Stack<>();   // solution path
+        ArrayList<Node> aStarOpened = new ArrayList<Node>();  //fringe for A*
         
       
-        aStarOpened.add(rootNode); 
+        aStarOpened.add(rootNode); //add starting board to the fringe
         while (!aStarOpened.isEmpty() && expandedNodes <= 1000000){  
            
-            tempNode = getMinHeuristic(aStarOpened);
-            aStarOpened.remove(getMinHeuristic(aStarOpened));
+            tempNode = getMinHeuristic(aStarOpened);  //get node with the best Heuristic
+            aStarOpened.remove(getMinHeuristic(aStarOpened)); //remove that node from the fringe
             
             if (tempNode.equals(solutionNode)){
                 //case for solution
-                while (tempNode != null) {
+                while (tempNode != null) {  //add solution and all its parents to the solution stack
                     solutionStack.add(tempNode);
                     tempNode = tempNode.parent;
                 } 
                 break;
             }
-            if (!closed.contains(tempNode)){
+            if (!closed.contains(tempNode)){  //if node has not yet been evaluated
                 closed.add(tempNode);
-                tempArray = tempNode.expand();
+                tempArray = tempNode.expand();  //expand all options
                 expandedNodes++;
-                if (expandedNodes % 100 == 0){
-                    System.out.println(expandedNodes);
-                }
+              
                 if (expandedNodes <= 5){
-                    System.out.println(Arrays.deepToString(tempNode.board));
-                }
-                for (int i = tempArray.length - 1; i >= 0; i--){
+                    System.out.println(Arrays.deepToString(tempNode.board)); //print out first five states
+                }  
+                for (int i = tempArray.length - 1; i >= 0; i--){   //add expanded nodes to fringe
                     if (tempArray[i] != null){
                         aStarOpened.add(tempArray[i]);
                     }
@@ -94,7 +92,7 @@ public class CS4750HomeworkNumber2 {
             System.out.println("Solution Found!!!!!");
             while (!solutionStack.isEmpty()){
                 tempNode = solutionStack.pop();
-                System.out.println(Arrays.deepToString(tempNode.board));
+                System.out.println(Arrays.deepToString(tempNode.board));   //print out solution path
                 solutionLength++;
             }
             System.out.println("The total number of moves is: " + solutionLength);
@@ -104,27 +102,27 @@ public class CS4750HomeworkNumber2 {
         System.out.println("Total execution time: " + (endTime - startTime) );
         
     }
-        public static Node getMinHeuristic(ArrayList<Node> aStarOpened) {
-        int min = manhattanHeuristic(aStarOpened.get(0));
+        public static Node getMinHeuristic(ArrayList<Node> aStarOpened) {  //sent the array of fringe
+        int min = manhattanHeuristic(aStarOpened.get(0));  //use the first node to compare 
         Node tempNode = aStarOpened.get(0);
         
-        for (int i = 0; i < aStarOpened.size(); i++) {
+        for (int i = 0; i < aStarOpened.size(); i++) {  //find the node in fringe with the lowest overall heuristic
             if(manhattanHeuristic(aStarOpened.get(i)) < min) {
                 min = manhattanHeuristic(aStarOpened.get(i));
                 tempNode = aStarOpened.get(i);
             }
         }    
         
-        return tempNode;
+        return tempNode;  //return node with lowest overall heuristic
     }
         
-    public static int manhattanHeuristic(Node node) {
+    public static int manhattanHeuristic(Node node) {  //evaluates the heuristic of each node based on Manhattan distance and path cost
         int mhSum = 0;
         
         for (int i=0; i <= 3; i++){
             for (int j = 0; j <= 3; j++){
               
-                switch (node.board[i][j]) {
+                switch (node.board[i][j]) {  //compares where each number is to where is should be: Manhattan distance
                     case 1:
                         mhSum += Math.abs(i-0) + Math.abs(j-0);
                         break;
@@ -178,6 +176,6 @@ public class CS4750HomeworkNumber2 {
             }
         }
         
-        return mhSum+node.depth;
+        return mhSum+node.depth;  // f(n) = g(n) + h(n)
     }
 }
