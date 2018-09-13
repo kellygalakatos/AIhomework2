@@ -62,6 +62,7 @@ public class CS4750HW2 {
                     solutionStack.add(tempNode);
                     tempNode = tempNode.parent;
                 } 
+                break;
             }
             if (!closed.contains(tempNode)){
                 closed.add(tempNode);
